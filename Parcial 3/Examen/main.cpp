@@ -1,4 +1,5 @@
 #include <iostream>
+#include "libreria.h"
 
 /*}
  * CREAR UN SISTEMA DE POLIZAS DE SEGURO
@@ -11,6 +12,7 @@
  * Direccion, tamaño, año de construccion
  * */
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    Poliza poliza;
+
+    poliza.StartQuestionare();
 }
