@@ -4,7 +4,8 @@
 #ifndef UNIAT_CODES_LIBRERIA_H
 #define UNIAT_CODES_LIBRERIA_H
 
-class Poliza {
+class Poliza { ;
+
 public:
     std::string nombre;
     int edad;
@@ -13,51 +14,114 @@ public:
     int maximo;
     int deducible;
 
-    int CalcAge(int currentYear, int bornYear) {
-        int res = currentYear - bornYear;
 
-        return res;
+    Poliza(){};
+
+    Poliza(std::string nombre, int edad, int nacimiento, std::string curp, int maximo, int deducible) {
+        this->nombre = nombre;
+        this->edad = edad;
+        this->nacimiento = nacimiento;
+        this->curp = curp;
+        this->maximo = maximo;
+        this->deducible = deducible;
+    };
+
+    //Setters
+    void setName(std::string nombre) {
+        this->nombre = nombre;
     }
 
-    void StartQuestionare() {
-        std::string name;
-        int fechaNac;
-        std::string CURP;
-        int max;
-        int ded;
+    void setEdad(int edad) {
+        this->edad = edad;
+    }
 
-        std::cout << "Porfavor ingresa el nombre del usuario: " << std::endl;
-        std::cin >> name;
+    void setNac(int nacimiento) {
+        this->nacimiento = nacimiento;
+    }
 
-        std::cout << "Porfavor ingresa el anio de nacimiento: " << std::endl;
-        std::cin >> fechaNac;
+    void setCurp(std::string curp) {
+        this->curp = curp;
+    }
 
-        std::cout << "Porfavor ingresa el CURP del usuario: " << std::endl;
-        std::cin >> CURP;
+    void setMax(int maximo) {
+        this->maximo = maximo;
+    }
 
-        std::cout << "Porfavor ingresa el maximo de poliza del usuario: " << std::endl;
-        std::cin >> max;
+    void setDeducible(int deducible) {
+        this->deducible = deducible;
+    }
 
-        std::cout << "Porfavor ingresa el deducible del usuario: " << std::endl;
-        std::cin >> ded;
+    //Getters
+    std::string getName() {
+        return this->nombre;
+    }
 
-        nombre = name;
-        nacimiento = fechaNac;
-        curp = CURP;
-        maximo = max;
-        deducible = ded;
+    int getAge() {
+        return this->edad;
+    }
 
-        edad = CalcAge(2023, nacimiento);
+    int getBirthDate() {
+        return this->nacimiento;
+    }
 
-        std::cout << "Los datos ingresados son: " << std::endl;
-        std::cout << "Nombre: " << nombre << std::endl;
-        std::cout << "Edad: " << edad << std::endl;
-        std::cout << "CURP: " << curp << std::endl;
-        std::cout << "Maximo: " << maximo << std::endl;
-        std::cout << "Deducible: " << ded << std::endl;
+    std::string getCURP() {
+        return this->curp;
+    }
+
+    int getMax() {
+        return this->maximo;
+    }
+
+    int getDeducible() {
+        return this->deducible;
     }
 };
 
+//Funcs
+
+int CalcAge(int currentYear, int birthDate) {
+    Poliza poliza;
+
+    //Rest the current year minus the current age of the client. We save that on the res variable.
+    int res = currentYear - poliza.getAge();
+    return res; //Return cus ofc we need to return that.
+}
+void StartQuestionare() {
+
+    Poliza basePolicy;
+
+    std::string name;
+    int birthDate;
+    std::string CURP;
+    int max;
+    int ded;
+
+    //Ask for the data...
+    std::cout << "Bienvenido al sistema de polizas" << std::endl;
+    std::cout << "El mejor sistema, no acepto criticas" << std::endl;
+    std::cout << "Ingresa el nombre del cliente: " << std::endl;
+    std::cin >> name;
+    std::cout << "Ingresa el año de nacimiento del cliente: " << std::endl;
+    std::cin >> birthDate;
+    std::cout << "Ingresa el CURP del cliente: " << std::endl;
+    std::cin >> CURP;
+    std::cout << "Ingresa el maximo de poliza del cliente: " << std::endl;
+    std::cin >> max;
+    std::cout << "Ingresa el deducible del cliente: " << std::endl;
+    std::cin >> ded;
+
+    //Convert the age
+    int age = CalcAge(2023, birthDate);
+
+    //Set stuff
+    basePolicy.setName(name);
+    basePolicy.setEdad(age);
+    basePolicy.setCurp(CURP);
+    basePolicy.setMax(max);
+    basePolicy.setDeducible(ded);
+    basePolicy.setNac(birthDate);
+
+}
 //TODO: Fill with data
 class Casa : public Poliza {
 };
