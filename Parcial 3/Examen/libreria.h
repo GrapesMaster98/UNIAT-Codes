@@ -4,15 +4,11 @@
 #ifndef UNIAT_CODES_LIBRERIA_H
 #define UNIAT_CODES_LIBRERIA_H
 
-class Poliza { ;
+class Poliza { 
 
 public:
-    std::string nombre;
-    int edad;
-    int nacimiento;
-    std::string curp;
-    int maximo;
-    int deducible;
+    std::string nombre, curp;
+    int edad, nacimiento, maximo, deducible;
 
 
     Poliza(){};

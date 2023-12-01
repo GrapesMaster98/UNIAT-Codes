@@ -13,6 +13,5 @@
  * */
 int main() {
     Poliza poliza;
-
-    poliza.StartQuestionare();
+    
 }
