@@ -13,5 +13,7 @@
  * */
 int main() {
     Poliza poliza;
+
+    Menu();
     
 }
