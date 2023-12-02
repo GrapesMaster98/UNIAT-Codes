@@ -34,7 +34,7 @@ public:
     void SetData() {
         std::cout << "Ingresa el nombre del cliente: " << std::endl;
         std::cin >> nombre;
-        std::cout << "Ingresa el año de nacimiento del cliente: " << std::endl;
+        std::cout << "Ingresa el anio de nacimiento del cliente: " << std::endl;
         std::cin >> nacimiento;
         std::cout << "Ingresa el CURP del cliente: " << std::endl;
         std::cin >> curp;
@@ -154,11 +154,6 @@ public:
      */
 
 
-// Función para ignorar el resto de la línea
-    void ignoreLine() {
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    }
-
     void DisplaySickness() const {
         std::cout << "Enfermedades del paciente: " << std::endl;
         for (int i = 0; i < numEnfermedades; ++i) {
@@ -205,6 +200,9 @@ void Menu() {
         vida.SetData();
     } else if (options == 0) {
         exit(0);
+    } else {
+        std::cout << "Esa opcion no es valida, porfavor elije una del menu solamente" << std::endl << std::endl;
+        Menu();
     }
 }
 
