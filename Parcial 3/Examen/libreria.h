@@ -17,16 +17,19 @@ public:
     Poliza(std::string nombre, int edad, int nacimiento, std::string curp, int maximo, int deducible, int folio)
             : nombre(nombre), edad(edad), nacimiento(nacimiento), curp(curp), maximo(maximo), deducible(deducible), folio(folio) {}
 
+
+            //Generar una poliza aleatoria
     int GenID(const Poliza& poliza) {
         std::random_device rd;
         std::mt19937 generator(rd());
-        std::uniform_int_distribution<int> distribution(1000000000, 9999999999);
+        std::uniform_int_distribution<int> distribution(1000000000, 9999999999); //Limitamos el resultado a 10 digitos
 
         int random_number = distribution(generator);
 
-        return random_number;
+        return random_number; //Retornamos el resultado para usarlo a nuestro gusto.
     }
 
+    //Calculo de edad basandose en el año de nacimiento.
     int CalcAge(int currentYear) const {
         return currentYear - nacimiento;
     }
@@ -43,7 +46,7 @@ public:
         std::cout << "Ingresa el deducible del cliente: " << std::endl;
         std::cin >> deducible;
 
-        edad = CalcAge(2023);
+        edad = CalcAge(2023); //Manualmente colocamos el año, esto automaticamente retornará la edad del cliente.
     }
 };
 
@@ -61,6 +64,8 @@ public:
         std::cin >> size;
         std::cout << "Ingresa el anio de construccion de la casa: " << std::endl;
         std::cin >> antiguedad;
+
+        //Si la casa fue construida después del 2023, soltará un error.
         if (antiguedad > 2023) {
             std::cout << "El anio de construccion no puede ser mayor al actual." << std::endl;
             exit(1);
@@ -107,7 +112,7 @@ public:
 class Vida : Poliza {
 private:
     std::string tipoSangre;
-    std::string* enfermedades;
+    std::string* enfermedades; //Creamos las enfermedades como un puntero, pues las almacenaremos en un Array dinamico.
     int numEnfermedades;
 
 public:
@@ -120,7 +125,7 @@ public:
     void SetEnfermedades() {
         // Se sigue pidiendo hasta que se proporciona un número válido
         while (true) {
-            std::cout << "Ingresa el número de enfermedades del cliente:" << std::endl;
+            std::cout << "Ingresa el numero de enfermedades del cliente:" << std::endl;
             std::string numEnfermedadesStr;
             std::getline(std::cin, numEnfermedadesStr);
 
@@ -130,7 +135,7 @@ public:
                 numEnfermedades = std::stoi(numEnfermedadesStr);
                 break;
             } else {
-                std::cerr << "Por favor, ingresa un número de enfermedades válido." << std::endl;
+                std::cerr << "Por favor, ingresa un numero de enfermedades valido." << std::endl;
             }
         }
 
@@ -154,6 +159,7 @@ public:
      */
 
 
+    //Imprimimos las enfermedades del cliente
     void DisplaySickness() const {
         std::cout << "Enfermedades del paciente: " << std::endl;
         for (int i = 0; i < numEnfermedades; ++i) {
@@ -161,6 +167,7 @@ public:
         }
     }
 
+    //Pedida de datos común
     void SetData() {
         Poliza::SetData();
 
@@ -178,6 +185,7 @@ public:
     }
 };
 
+//Menú de opciones. Se almacena en una función para llamarla luego en el main.
 void Menu() {
     Casa casa;
     Carro carro;
@@ -202,7 +210,7 @@ void Menu() {
         exit(0);
     } else {
         std::cout << "Esa opcion no es valida, porfavor elije una del menu solamente" << std::endl << std::endl;
-        Menu();
+        Menu(); //Esto correrá nuevamente el Menú, de no añadir esto el programa simplemente crashea.
     }
 }
 
